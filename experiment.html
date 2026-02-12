@@ -84,10 +84,25 @@
         // Initialize jsPsych
         window.jsPsych = initJsPsych({
             display_element: 'display_element',
-            on_finish: function(data) {
-                // Display results
-                jsPsych.getDisplayElement().innerHTML = session == "screening" ? '<p>Thank you for participating! You may now close this tab.</p>' : '<p>Thank you for participating! Please call the experimenter.</p>';
-            }
+            on_finish: function() {
+
+    // Extract participant ID and session from first trial
+    const data = jsPsych.data.get().values();
+    const participant = data[0]?.participant_id || "unknown";
+    const sessionName = data[0]?.session || "unknown";
+
+    const filename = `${participant}_${sessionName}_piggybank.csv`;
+
+    // Save data
+    jsPsych.data.get().localSave('csv', filename);
+
+    // Show completion message
+    jsPsych.getDisplayElement().innerHTML =
+        session == "screening"
+        ? '<p>Thank you for participating! You may now close this tab.</p>'
+        : '<p>Thank you for participating! Please call the experimenter.</p>';
+}
+
         });
 
         // Configurations
@@ -103,7 +118,7 @@
         async function runExperiment() {
             try {
                 // Which module to run
-                const module_name = session == "screening" ? 'screening' : 'full_battery';
+                const module_name = 'vigour_only';
 
                 // Get module information
                 const moduleInfo = getModuleInfo(module_name);

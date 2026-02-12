@@ -54,6 +54,16 @@ export const ModuleRegistry = {
             { type: "task", name: "acceptability_judgment", config: { task_name: "reversal", game_description: "squirrel game" } },
             { type: "instructions", config: { text: "end_message" } }
         ]
-    }
+    },
+vigour_only: {
+    name: "Vigour Only Module",
+    moduleConfig: {
+        session: "wk0",
+        sequence: "wk0"
+    },
+    elements: [
+        { type: "task", name: "vigour" }
+    ]
+}
 };
 
