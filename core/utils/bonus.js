@@ -138,7 +138,7 @@ function bonusTrial(module) {
             let stimulus =  `Thank you for completing this session!`      
             const total_bonus = computeTotalBonus(module);
             stimulus += `
-                    <p>It is time to reveal your total bonus payment for this module.</p>
+                    <p>It is time to reveal your total bonus payment for this task.</p>
                     <p>Altogether, you will earn an extra ${total_bonus.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })}.</p>
                 `;
             return stimulus;
