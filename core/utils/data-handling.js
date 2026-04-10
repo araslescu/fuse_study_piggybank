@@ -183,21 +183,25 @@ function saveDataREDCap(retry = 1, extra_fields = {}, callback = () => {}) {
 }
 
 /**
- * Handles experiment completion and final data submission
- * Removes page refresh prevention and redirects participants appropriately
+ * Handles experiment completion and data download
+ * NB for the FUSE study, data is saved locally and NOT submitted to REDCap, so this function is responsible for triggering the data download at the end of the experiment
  */
 function endExperiment() {
+    console.log("Experiment finished. Saving data...");
 
-    // Print end experiment message
-    console.log("Experiment finished. Sending final data...");
-
-    // Remove beforeunload event listener to allow page navigation
     window.removeEventListener('beforeunload', preventRefresh);
 
-    // Save data with end task message for RELMED context
-    saveDataREDCap(10, {
-        message: "endTask"
-    });
+    // Exit fullscreen
+    document.exitFullscreen();
+
+    // Extract participant ID and session for filename
+    const data = jsPsych.data.get().values();
+    const participant = data[0]?.participant_id || "unknown";
+    const sessionName = data[0]?.session || "unknown";
+    const filename = `${participant}_${sessionName}_piggybank.csv`;
+
+    // Save local CSV
+    jsPsych.data.get().localSave('csv', filename);
 }
 
 // Export functions for use in other modules

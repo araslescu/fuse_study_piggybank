@@ -138,12 +138,14 @@ function bonusTrial(module) {
             let stimulus =  `Thank you for completing this session!`      
             const total_bonus = computeTotalBonus(module);
             stimulus += `
-                    <p>It is time to reveal your total bonus payment for this task.</p>
-                    <p>Altogether, you will earn an extra ${total_bonus.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })}.</p>
+                    <p>Altogether, you have earned an extra ${total_bonus.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })}.</p>
+                    <p>This bonus will be added to your total payment for the study.</p>
+                    <p>Please call the experimenter to let them know you have finished.</p>
+                    <p>Experimenter, press the <strong>spacebar</strong> to end the experiment and trigger data download.</p>
                 `;
             return stimulus;
     },
-    choices: ['p'],
+    choices: [' '],
     data: { trialphase: 'bonus_trial' },
     on_start: () => {
       const bonus = computeTotalBonus(module).toFixed(2);

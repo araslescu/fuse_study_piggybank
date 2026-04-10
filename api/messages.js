@@ -75,6 +75,22 @@ export const messages = {
                 <p>When you click next, your data will be uploaded to the secure server. This may take up to two minutes. Please don't close or refresh your browser at this time.</p>`,
             on_finish: endExperiment
         }
+    },
+    vigour_only: {
+        start_message: [
+            `<p><b>Welcome to the Piggybank Task, which is part of your FUSE Study Second Visit.</b></p>
+            <p>Over the next 5 minutes, you will be playing a simple trial-and-error learning game. Your goal is to win as many coins as possible.</p>
+            <p>You will have an opportunity to practice the game controls before you start, so don't worry if it feels a bit confusing at first. Just do your best to win as many coins as you can!</p>
+            <p>The game may feel a bit fast-paced because we're interested in your quick, intuitive decisions. Since it's designed around learning from experience, making mistakes is completely expected. Over time, you'll figure out better choices and improve your performance.</p>
+            `,
+            `
+            <p>If at some point you are taking too long to respond, you might see a message like this:</p><br>
+            ${formatted_warning_msg}
+            <br><p>It is perfectly natural to take a bit longer when you are learning something new. However, if you see this message a few times, it may be a sign that you are overthinking your responses.</p>
+            <p>If at any point you feel like you need some assistance, please call the study researcher. We are happy to help.</p>`
+        ]
+
     }
+
 }
 

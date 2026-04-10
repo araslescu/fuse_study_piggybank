@@ -74,7 +74,7 @@
     <script type="module">
         // Import task registry functions
         import { createModuleTimeline, getModuleInfo } from '@api/index.js';
-        import { enterExperiment } from '@utils/index.js';
+        import { enterExperiment, endExperiment } from '@utils/index.js';
 
         // Get parameters from URL
         window.participantID = new URLSearchParams(window.location.search).get('participant_id') || '';
@@ -83,26 +83,7 @@
 
         // Initialize jsPsych
         window.jsPsych = initJsPsych({
-            display_element: 'display_element',
-            on_finish: function() {
-
-    // Extract participant ID and session from first trial
-    const data = jsPsych.data.get().values();
-    const participant = data[0]?.participant_id || "unknown";
-    const sessionName = data[0]?.session || "unknown";
-
-    const filename = `${participant}_${sessionName}_piggybank.csv`;
-
-    // Save data
-    jsPsych.data.get().localSave('csv', filename);
-
-    // Show completion message
-    jsPsych.getDisplayElement().innerHTML =
-        session == "screening"
-        ? '<p>Thank you for participating! You may now close this tab.</p>'
-        : '<p>Thank you for participating! Please call the experimenter.</p>';
-}
-
+            display_element: 'display_element'
         });
 
         // Configurations

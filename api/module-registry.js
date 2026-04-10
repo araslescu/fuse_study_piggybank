@@ -62,10 +62,12 @@ vigour_only: {
         sequence: "wk0"
     },
     elements: [
+        { type: "instructions", config: { text: "start_message" } },
         { type: "task", name: "vigour" },
-        { type: "bonus" },
-        { type: "instructions", config: { text: "end_message" } }
-    ]
+        { type: "bonus" }
+    ],
+    max_bonus: 5.0,
+    min_prop_bonus: 0.6
 }
-};
+}
 
